@@ -8,6 +8,7 @@ const UniswapV2Pair = artifacts.require('MockUniswapV2Pair')
 
 const WadMath = artifacts.require('MockWadMath')
 const MedianOracle = artifacts.require('MockMedianOracle')
+const ChainlinkOracle = artifacts.require('MockChainlinkOracle')
 const USM = artifacts.require('USM')
 const FUM = artifacts.require('FUM')
 const USMView = artifacts.require('USMView')
@@ -94,7 +95,7 @@ contract('USM', (accounts) => {
   // ____________________ Deployment ____________________
 
   describe("mints and burns a static amount", () => {
-    let oracle, usm, fum, usmView, ethPerFund, ethPerMint, bitOfEth, snapshot, snapshotId
+    let oracle, backupOracle, usm, fum, usmView, ethPerFund, ethPerMint, bitOfEth, snapshot, snapshotId
 
     beforeEach(async () => {
       // Oracle params
@@ -113,7 +114,8 @@ contract('USM', (accounts) => {
       oracle = await MedianOracle.new(aggregator.address, anchoredView.address,
                                       usdcEthPair.address, usdcDecimals, ethDecimals, uniswapTokensInReverseOrder,
                                       { from: deployer })
-      usm = await USM.new(oracle.address, [optOut1, optOut2], { from: deployer })
+      backupOracle = await ChainlinkOracle.new(aggregator.address, { from: deployer })
+      usm = await USM.new(oracle.address, backupOracle.address, [optOut1, optOut2], { from: deployer })
       await usm.refreshPrice()  // This call stores the Uniswap cumPriceSeconds record for time usdcEthTimestamp_0
       fum = await FUM.at(await usm.fum())
       usmView = await USMView.new(usm.address, { from: deployer })

@@ -29,6 +29,7 @@ contract USM is IUSM, Oracle, ERC20WithOptOut, Delegable {
     using Address for address payable;
     using WadMath for uint;
 
+    event OracleChanged(address previous, address latest);
     event UnderwaterStatusChanged(bool previous, bool latest);
     event BuySellAdjustmentChanged(uint previous, uint latest);
     event PriceChanged(uint previous, uint latest);
@@ -42,7 +43,9 @@ contract USM is IUSM, Oracle, ERC20WithOptOut, Delegable {
     uint public constant BUY_SELL_ADJUSTMENT_HALF_LIFE = 1 minutes;     // Solidity for 1 * 60
 
     FUM public immutable fum;
-    Oracle public immutable oracle;
+    Oracle public immutable oracle0;        // Primary oracle
+    Oracle public immutable oracle1;        // Backup oracle
+    Oracle public oracle;                   // Currently active oracle (either oracle0 or oracle1)
 
     struct StoredState {
         uint32 timeSystemWentUnderwater;    // Time at which (we noticed) debt ratio went > MAX, or 0 if it's currently < MAX
@@ -67,11 +70,25 @@ contract USM is IUSM, Oracle, ERC20WithOptOut, Delegable {
         buySellAdjustmentTimestamp: 0, buySellAdjustment: uint80(BILLION)       // initialize adjustment to 1.0 (scaled by 1b)
     });
 
-    constructor(Oracle oracle_, address[] memory optedOut_)
+    constructor(Oracle oracle0_, Oracle oracle1_, address[] memory optedOut_)
         ERC20WithOptOut("Minimalist USD v1.0", "USM", optedOut_)
     {
-        oracle = oracle_;
+        oracle0 = oracle0_;
+        oracle1 = oracle1_;
+        oracle = oracle0_;
         fum = new FUM(this, optedOut_);
+    }
+
+    // ____________________ Admin-only external transactional functions ____________________
+
+    function setOracle(uint oracleIndex) external override {
+        // TODO: need to restrict calls to this fn to admins only!
+        require(oracleIndex == 0 || oracleIndex == 1, "Invalid oracleIndex");
+        Oracle previous = oracle;
+        Oracle newOracle = (oracleIndex == 0 ? oracle0 : oracle1);
+        require(newOracle != oracle, "New oracle same as old");
+        oracle = newOracle;
+        emit OracleChanged(address(previous), address(newOracle));
     }
 
     // ____________________ External transactional functions ____________________

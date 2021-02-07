@@ -6,6 +6,8 @@ import "./WadMath.sol";
 abstract contract IUSM {
     enum Side {Buy, Sell}
 
+    function setOracle(uint oracleIndex) external virtual;
+
     function mint(address to, uint minUsmOut) external virtual payable returns (uint);
     function burn(address from, address payable to, uint usmToBurn, uint minEthOut) external virtual returns (uint);
     function fund(address to, uint minFumOut) external virtual payable returns (uint);

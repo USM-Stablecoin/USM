@@ -19,8 +19,9 @@ contract('USM - Internal functions', (accounts) => {
   const priceWAD = price.mul(WAD)
 
   beforeEach(async () => {
-    oracle = await TestOracle.new(priceWAD, { from: deployer })
-    usm = await USM.new(oracle.address, [], { from: deployer })
+    oracle0 = await TestOracle.new(priceWAD, { from: deployer })
+    oracle1 = await TestOracle.new(priceWAD.div(new BN('2')), { from: deployer })
+    usm = await USM.new(oracle0.address, oracle1.address, [], { from: deployer })
     await usm.refreshPrice()    // Ensures the savedPrice set in TestOracle is also set in usm.storedPrice
     usmView = await USMView.new(usm.address, { from: deployer })
   })
