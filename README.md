@@ -4,13 +4,13 @@ Originally proposed by [@jacob-eliosoff](https://github.com/jacob-eliosoff) in [
 
 ## Networks & Addresses
 
-### USM v0.2 (Kovan testnet)
+### USM v0.3 (Kovan testnet)
 
- - Oracle: [0x4B2D04f6d7721B09024E0d61C1617DF04e4C21ae](https://kovan.etherscan.io/address/0x4B2D04f6d7721B09024E0d61C1617DF04e4C21ae)
- - USM: [0x6dcc375aE1f43c8FA4e13D56E6ec584BeE25A88F](https://kovan.etherscan.io/address/0x6dcc375aE1f43c8FA4e13D56E6ec584BeE25A88F)
- - FUM: [0xf99b440d8e18f850187ae53cdd4ebc959ebf36df](https://kovan.etherscan.io/address/0xf99b440d8e18f850187ae53cdd4ebc959ebf36df)
- - USMView: [0x5442818E2E38FB2c8F4CEed22782663b8FCBD0b5](https://kovan.etherscan.io/address/0x5442818E2E38FB2c8F4CEed22782663b8FCBD0b5)
- - Proxy: [0xaCDCd6A936134D7C84163CD9B23B256cb25942D0](https://kovan.etherscan.io/address/0xaCDCd6A936134D7C84163CD9B23B256cb25942D0)
+ - Oracle: [0x8e91D25324833D62Fb3eC67aDEE26048696c8909](https://kovan.etherscan.io/address/0x8e91D25324833D62Fb3eC67aDEE26048696c8909)
+ - USM: [0x19b490DAA2B58d9B12BFb15Cd3eFC2358ad2Bd67](https://kovan.etherscan.io/address/0x19b490DAA2B58d9B12BFb15Cd3eFC2358ad2Bd67)
+ - FUM: [0x0f682f36363b4cd5261dd613f4caec6e6c8a5eef](https://kovan.etherscan.io/address/0x0f682f36363b4cd5261dd613f4caec6e6c8a5eef)
+ - USMView: [0xfd1B7a306D0a28d886f15Fb0D2F4d8A720E10B4c](https://kovan.etherscan.io/address/0xfd1B7a306D0a28d886f15Fb0D2F4d8A720E10B4c)
+ - Proxy: [0xa026638f21E6f1deD6dE7A6bd1DB8b4376A49b68](https://kovan.etherscan.io/address/0xa026638f21E6f1deD6dE7A6bd1DB8b4376A49b68)
 
 ### USM v0.1 ("Baby USM") - Mainnet
 
@@ -23,12 +23,6 @@ Baby USM and Baby FUM is not redeemable for USM or FUM. It is for test and reser
 USM: [0x03eb7Ce2907e202bB70BAE3D7B0C588573d3cECC](https://etherscan.io/address/0x03eb7Ce2907e202bB70BAE3D7B0C588573d3cECC)
 
 FUM: [0xf04a5D82ff8a801f7d45e9C14CDcf73defF1a394](https://etherscan.io/address/0xf04a5D82ff8a801f7d45e9C14CDcf73defF1a394)
-
-### Kovan
-
-USM: [0x21453979384f21D09534f8801467BDd5d90eCD6C](https://kovan.etherscan.io/address/0x21453979384f21D09534f8801467BDd5d90eCD6C)
-
-FUM: [0x96F8F5323Aa6CB0e6F311bdE6DEEFb1c81Cb1898](https://kovan.etherscan.io/address/0x96F8F5323Aa6CB0e6F311bdE6DEEFb1c81Cb1898)
 
 ## How It Works
 

@@ -19,7 +19,7 @@ contract FUM is ERC20Permit, WithOptOut, Ownable {
     IUSM public immutable usm;
 
     constructor(IUSM usm_, address[] memory optedOut_)
-        ERC20Permit("Minimalist Funding v1.0", "FUM")
+        ERC20Permit("Minimalist Funding v1.0 - Test 3", "KFUM")
         WithOptOut(optedOut_)
     {
         usm = usm_;
