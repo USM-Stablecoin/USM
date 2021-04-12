@@ -42,12 +42,12 @@ const func = async function ({ deployments, getNamedAccounts, getChainId }) {
     console.log(`Deployed MockChainlinkAggregatorV3 to ${aggregator.address}`);
     aggregatorAddress = aggregator.address
 
-    anchoredView = await deploy('MockUniswapAnchoredView', {
+    anchoredView = await deploy('MockCompoundUniswapAnchoredView', {
       from: deployer,
       deterministicDeployment: true,
     });
-    await execute('MockUniswapAnchoredView', { from: deployer }, 'set', compoundPrice)
-    console.log(`Deployed MockUniswapAnchoredView to ${anchoredView.address}`);
+    await execute('MockCompoundUniswapAnchoredView', { from: deployer }, 'set', compoundPrice)
+    console.log(`Deployed MockCompoundUniswapAnchoredView to ${anchoredView.address}`);
     anchoredViewAddress = anchoredView.address
 
     usdcEthPair = await deploy('MockUniswapV2Pair', {
